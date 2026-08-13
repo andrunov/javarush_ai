@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CLAWD YOLO — генератор пиксельного маскота</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <span class="logo">CLAWD&nbsp;<b>YOLO</b></span>
+    <span class="tagline">генератор пиксельного маскота Claude Code</span>
+  </header>
+
+  <div class="layout">
+
+    <!-- слева: инструменты -->
+    <aside class="tools">
+
+      <section class="panel">
+        <h2><span class="step">1</span> Настроение <small id="moodName">—</small></h2>
+        <div class="grid-emoji" id="moodGrid"></div>
+      </section>
+
+      <section class="panel">
+        <h2><span class="step">2</span> Палитра</h2>
+        <p class="panel-hint">Выберите цвет кисти (или настройте сами цвета маскота).</p>
+        <div class="palette" id="paletteBox"></div>
+      </section>
+
+      <section class="panel">
+        <h2><span class="step">3</span> Размер, px</h2>
+        <div class="sizes" id="sizeBox"></div>
+      </section>
+
+      <section class="panel">
+        <h2><span class="step">4</span> Дорисовка</h2>
+        <p class="panel-hint">Кликните / потяните по маскоту справа — дорисуйте пиксели. ПКМ или Shift — стереть.</p>
+        <div class="toolrow">
+          <button id="btnErase" class="tool" title="Кисть → ластик">🧽 Ластик</button>
+          <button id="btnUndo" class="tool" title="Отменить последний штрих (Ctrl+Z)">↩ Отменить</button>
+          <button id="btnReset" class="tool" title="Убрать ручные правки">Сброс</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2><span class="step">5</span> Экспорт</h2>
+        <div class="grid-export" id="exportBox"></div>
+      </section>
+
+    </aside>
+
+    <!-- справа: результат -->
+    <main class="stage">
+      <div class="frame">
+        <canvas id="canvas" width="24" height="24" aria-label="Маскот CLAWD"></canvas>
+      </div>
+      <p class="stage-hint" id="stageHint">кисть: <b id="brushBadge">Тело</b></p>
+    </main>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

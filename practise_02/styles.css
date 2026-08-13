@@ -1,0 +1,461 @@
+:root {
+  --bg: #161223;
+  --grid: rgba(255, 255, 255, 0.05);
+  --panel: #241d3d;
+  --panel-2: #2a2350;
+  --panel-border: #3d3163;
+  --text: #e8e3f5;
+  --muted: #8a82a8;
+  --accent: #3ecf9e;
+  --danger: #ff5d6c;
+  --shadow: rgba(0, 0, 0, 0.4);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Courier New", ui-monospace, monospace;
+  color: var(--text);
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  overflow: hidden;
+  user-select: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* ---------- верхняя панель ---------- */
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 18px;
+  background: rgba(22, 18, 35, 0.8);
+  border-bottom: 2px solid var(--panel-border);
+  z-index: 10;
+}
+
+.logo {
+  font-size: 15px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: bold;
+  text-shadow: 0 0 12px rgba(62, 207, 158, 0.5);
+}
+
+.tagline {
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--muted);
+}
+
+/* ---------- раскладка ---------- */
+
+.layout {
+  display: flex;
+  gap: 16px;
+  height: 100vh;
+  padding: calc(52px + 16px) 16px 16px;
+}
+
+.tools {
+  width: 330px;
+  min-width: 300px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 2px 6px 8px 2px;
+}
+
+/* тёмный скроллбар */
+.tools::-webkit-scrollbar {
+  width: 10px;
+}
+.tools::-webkit-scrollbar-thumb {
+  background: var(--panel-border);
+  border: 2px solid var(--bg);
+}
+
+.stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+/* ---------- панели инструментов ---------- */
+
+.panel {
+  background: var(--panel);
+  border: 2px solid var(--panel-border);
+  box-shadow: 4px 4px 0 var(--shadow);
+  padding: 12px 14px 14px;
+}
+
+.panel h2 {
+  margin: 0 0 10px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.panel h2 .step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: var(--panel-2);
+  border: 1px solid var(--panel-border);
+  color: var(--accent);
+  font-size: 10px;
+}
+
+.panel h2 small {
+  margin-left: auto;
+  color: var(--accent);
+  font-size: 11px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.panel-hint {
+  margin: 0 0 10px;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* --- 1 · эмодзи-настроение --- */
+
+.grid-emoji {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.emoji-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 8px 4px 6px;
+  background: var(--panel-2);
+  border: 2px solid var(--panel-border);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+  transition: transform 0.08s ease, border-color 0.08s ease, box-shadow 0.08s ease;
+}
+
+.emoji-btn .face {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.emoji-btn .label {
+  font-size: 9px;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.emoji-btn:hover {
+  transform: translate(-1px, -1px);
+}
+
+.emoji-btn.active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent), 2px 2px 0 var(--shadow);
+  background: #1d3b30;
+}
+
+.emoji-btn.active .label {
+  color: var(--accent);
+}
+
+/* --- 2 · палитра --- */
+
+.palette {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.pal-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pal-swatch {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 8px;
+  background: var(--panel-2);
+  border: 2px solid var(--panel-border);
+  text-align: left;
+  font-size: 11px;
+  transition: border-color 0.08s ease;
+}
+
+.pal-swatch .dot {
+  width: 16px;
+  height: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  flex-shrink: 0;
+}
+
+.pal-swatch .name {
+  color: var(--text);
+}
+
+.pal-swatch:hover {
+  border-color: var(--muted);
+}
+
+.pal-swatch.brush {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.pal-tune {
+  width: 34px;
+  height: 26px;
+  padding: 0;
+  border: 2px solid var(--panel-border);
+  background: var(--panel-2);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.pal-tune::-webkit-color-swatch-wrapper {
+  padding: 2px;
+}
+
+.pal-tune::-webkit-color-swatch {
+  border: none;
+}
+
+/* --- 3 · размер --- */
+
+.sizes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.size-btn {
+  flex: 1 1 30%;
+  padding: 8px 4px;
+  background: var(--panel-2);
+  border: 2px solid var(--panel-border);
+  font-size: 12px;
+  transition: transform 0.08s ease, border-color 0.08s ease;
+}
+
+.size-btn:hover {
+  transform: translate(-1px, -1px);
+}
+
+.size-btn.active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+  color: var(--accent);
+}
+
+/* --- 4 · дорисовка --- */
+
+.toolrow {
+  display: flex;
+  gap: 8px;
+}
+
+.tool {
+  flex: 1;
+  padding: 7px 6px;
+  background: var(--panel-2);
+  border: 2px solid var(--panel-border);
+  font-size: 11px;
+  transition: transform 0.08s ease, border-color 0.08s ease;
+}
+
+.tool:hover {
+  transform: translate(-1px, -1px);
+}
+
+.tool.active {
+  border-color: var(--danger);
+  color: var(--danger);
+  box-shadow: 0 0 0 1px var(--danger);
+}
+
+/* --- 5 · экспорт --- */
+
+.grid-export {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.exp-btn {
+  padding: 9px 6px;
+  background: var(--panel-2);
+  border: 2px solid var(--panel-border);
+  font-size: 11px;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+  transition: transform 0.08s ease, border-color 0.08s ease;
+}
+
+.exp-btn:hover {
+  transform: translate(-1px, -1px);
+  border-color: var(--accent);
+}
+
+.exp-btn.primary {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.exp-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+/* ---------- сцена справа ---------- */
+
+.frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  background:
+    linear-gradient(45deg, rgba(255, 255, 255, 0.06) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(255, 255, 255, 0.06) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.06) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.06) 75%);
+  background-size: 22px 22px;
+  background-position: 0 0, 0 11px, 11px -11px, -11px 0;
+  border: 2px solid var(--panel-border);
+  box-shadow: 6px 6px 0 var(--shadow);
+}
+
+#canvas {
+  display: block;
+  width: 240px;
+  height: 240px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  cursor: crosshair;
+  touch-action: none;
+  outline: 2px dashed rgba(255, 255, 255, 0.18);
+  background: transparent;
+}
+
+#canvas.painting {
+  cursor: none;
+}
+
+#canvas.eraser {
+  outline-color: var(--danger);
+}
+
+.stage-hint {
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--muted);
+}
+
+.stage-hint b {
+  color: var(--accent);
+}
+
+.stage-hint b.eraser {
+  color: var(--danger);
+}
+
+/* ---------- тост-уведомления ---------- */
+
+.toast {
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  transform: translate(-50%, 14px);
+  padding: 10px 16px;
+  background: var(--panel);
+  border: 2px solid var(--accent);
+  color: var(--text);
+  font-size: 12px;
+  box-shadow: 4px 4px 0 var(--shadow);
+  opacity: 0;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  pointer-events: none;
+  z-index: 50;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* ---------- адаптивность ---------- */
+
+@media (max-width: 900px) {
+  .layout {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .tools {
+    width: 100%;
+    min-width: 0;
+    overflow-y: visible;
+    order: 2;
+  }
+
+  .stage {
+    order: 1;
+    padding-top: 8px;
+  }
+
+  .frame {
+    padding: 20px;
+  }
+
+  #canvas {
+    width: 180px;
+    height: 180px;
+  }
+}
