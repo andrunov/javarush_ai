@@ -1,0 +1,185 @@
+:root {
+  --bg: #161223;
+  --grid: rgba(255, 255, 255, 0.05);
+  --panel: #241d3d;
+  --panel-border: #3d3163;
+  --text: #e8e3f5;
+  --muted: #8a82a8;
+  --accent: #3ecf9e;
+  --accent-2: #ff87a5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Courier New", ui-monospace, monospace;
+  color: var(--text);
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  overflow: hidden;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+}
+
+/* верхняя полоса — как в предыдущих проектах */
+.topbar {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 18px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: rgba(22, 18, 35, 0.72);
+  border-bottom: 2px solid var(--panel-border);
+}
+
+.logo {
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.tagline {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* сцена: канвас + оверлеи */
+#stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.wrap {
+  position: relative;
+}
+
+#game {
+  display: block;
+  width: min(96vw, calc((100vh - 130px) * 16 / 9), 1280px);
+  height: auto;
+  aspect-ratio: 16 / 9;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  background: #0d0a1a;
+  border: 2px solid var(--panel-border);
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.35);
+  touch-action: none;
+}
+
+/* экраны-оверлеи поверх канваса */
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  padding: 20px;
+  background: rgba(11, 8, 22, 0.55);
+}
+
+.overlay.hide {
+  display: none;
+}
+
+.game-title {
+  margin: 0;
+  font-size: 34px;
+  letter-spacing: 3px;
+  color: var(--accent);
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.5);
+}
+
+.game-title.over {
+  color: var(--accent-2);
+}
+
+.game-sub,
+.controls,
+.best {
+  margin: 0;
+  font-size: 12px;
+}
+
+.game-sub,
+.best {
+  color: var(--muted);
+}
+
+.controls {
+  color: var(--text);
+}
+
+.result {
+  margin: 2px 0;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.result b {
+  color: var(--accent);
+  font-size: 20px;
+}
+
+.btn {
+  margin-top: 10px;
+  padding: 12px 26px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #0d0a1a;
+  background: var(--accent);
+  border: 2px solid #8fffd6;
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #5ce0b0;
+}
+
+.btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.45);
+}
+
+.sound {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 6;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  line-height: 1;
+  background: var(--panel);
+  border: 2px solid var(--panel-border);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.sound:hover {
+  border-color: var(--accent);
+}
