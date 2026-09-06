@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Простой трекер ежедневных привычек">
+  <title>Мои привычки</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="app-header">
+      <div class="brand-mark" aria-hidden="true">✦</div>
+      <div>
+        <p class="eyebrow">небольшие шаги каждый день</p>
+        <h1>Мои привычки</h1>
+        <p id="today-summary" class="today-summary" role="status" aria-live="polite">Сегодня выполнено: 0 из 0</p>
+      </div>
+    </header>
+
+    <p id="app-status" class="status" role="status" aria-live="polite" hidden></p>
+
+    <section class="panel add-panel" aria-labelledby="add-title">
+      <div class="section-heading">
+        <div class="section-icon" aria-hidden="true">＋</div>
+        <div>
+          <h2 id="add-title">Новая привычка</h2>
+          <p>Назовите действие, которое хотите повторять.</p>
+        </div>
+      </div>
+
+      <form id="habit-form" class="habit-form" novalidate>
+        <div class="field-group">
+          <label for="habit-name">Название привычки</label>
+          <div class="input-row">
+            <input
+              id="habit-name"
+              name="habit-name"
+              type="text"
+              autocomplete="off"
+              maxlength="120"
+              placeholder="например, читать 20 минут"
+              aria-describedby="name-hint name-error"
+              aria-invalid="false"
+            >
+            <button class="button button-primary" type="submit">Добавить</button>
+          </div>
+          <p id="name-hint" class="field-hint">Лишние пробелы будут убраны автоматически.</p>
+          <p id="name-error" class="field-error" role="alert" aria-live="polite" hidden></p>
+        </div>
+      </form>
+    </section>
+
+    <section id="habit-section" class="habits-section" aria-labelledby="habits-title" hidden>
+      <div class="list-heading">
+        <h2 id="habits-title">Ваши привычки</h2>
+        <span id="habit-count" class="count-badge">0</span>
+      </div>
+      <ul id="habit-list" class="habit-list"></ul>
+    </section>
+
+    <section id="empty-state" class="panel empty-state" aria-labelledby="empty-title">
+      <div class="empty-illustration" aria-hidden="true">☼</div>
+      <h2 id="empty-title">Здесь пока пусто</h2>
+      <p>Добавьте первую привычку выше и отмечайте её выполнение каждый день.</p>
+    </section>
+
+    <footer class="app-footer">Данные хранятся только в этом браузере</footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
