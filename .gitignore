@@ -220,5 +220,3 @@ __marimo__/
 # IntelliJ IDEA project files
 .idea/
 *.iml
-
-.claude/
