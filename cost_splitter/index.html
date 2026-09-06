@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Локальное приложение для деления счёта между участниками">
+  <title>Делим счёт</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="app-header">
+      <p class="eyebrow">маленький помощник для большой компании</p>
+      <h1>Делим счёт</h1>
+      <p class="intro">Введите сумму, количество участников и чаевые — мы распределим итог до последней копейки.</p>
+    </header>
+
+    <div class="content-grid">
+      <section class="panel form-panel" aria-labelledby="form-title">
+        <div class="panel-heading">
+          <span class="panel-number">01</span>
+          <div>
+            <h2 id="form-title">Данные счёта</h2>
+            <p>Все суммы вводятся в рублях через запятую.</p>
+          </div>
+        </div>
+
+        <form id="split-form" novalidate>
+          <div class="field-group">
+            <label for="bill">Сумма счёта</label>
+            <div class="input-with-suffix">
+              <input
+                id="bill"
+                name="bill"
+                type="text"
+                inputmode="decimal"
+                autocomplete="off"
+                placeholder="например, 1250,50"
+                aria-describedby="bill-hint bill-error"
+                aria-invalid="false"
+              >
+              <span class="input-suffix" aria-hidden="true">₽</span>
+            </div>
+            <p id="bill-hint" class="field-hint">Сумма должна быть больше нуля.</p>
+            <p id="bill-error" class="field-error" role="alert" aria-live="polite" hidden></p>
+          </div>
+
+          <div class="field-group">
+            <label for="people">Количество человек</label>
+            <input
+              id="people"
+              name="people"
+              type="text"
+              inputmode="numeric"
+              autocomplete="off"
+              placeholder="от 1 до 25"
+              aria-describedby="people-hint people-error"
+              aria-invalid="false"
+            >
+            <p id="people-hint" class="field-hint">Максимум 25 участников.</p>
+            <p id="people-error" class="field-error" role="alert" aria-live="polite" hidden></p>
+          </div>
+
+          <fieldset class="field-group tip-fieldset">
+            <legend>Чаевые</legend>
+            <div class="tip-options">
+              <label class="radio-option">
+                <input type="radio" name="tip-mode" value="percent" checked>
+                <span>Процент</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="tip-mode" value="fixed">
+                <span>Фиксированная сумма</span>
+              </label>
+            </div>
+
+            <label id="tip-label" for="tip-value">Процент чаевых</label>
+            <div class="input-with-suffix">
+              <input
+                id="tip-value"
+                name="tip-value"
+                type="text"
+                inputmode="decimal"
+                autocomplete="off"
+                placeholder="например, 10"
+                aria-describedby="tip-hint tip-error"
+                aria-invalid="false"
+              >
+              <span id="tip-suffix" class="input-suffix" aria-hidden="true">%</span>
+            </div>
+            <p id="tip-hint" class="field-hint">От 0 до 25%. Можно указать дробное значение.</p>
+            <p id="tip-error" class="field-error" role="alert" aria-live="polite" hidden></p>
+          </fieldset>
+
+          <div class="form-actions">
+            <button class="button button-primary" type="submit">Рассчитать</button>
+            <button id="clear-button" class="button button-secondary" type="button">Очистить</button>
+          </div>
+        </form>
+      </section>
+
+      <section id="result" class="panel result-panel" aria-labelledby="result-title" aria-live="polite" hidden>
+        <div class="panel-heading">
+          <span class="panel-number panel-number-accent">02</span>
+          <div>
+            <h2 id="result-title">Результат</h2>
+            <p>Каждый участник указан отдельной строкой.</p>
+          </div>
+        </div>
+
+        <div class="total-card">
+          <span>Итого с чаевыми</span>
+          <strong id="total-amount">0,00 ₽</strong>
+        </div>
+        <p class="tip-result">Чаевые: <strong id="tip-amount">0,00 ₽</strong></p>
+
+        <h3>Доли участников</h3>
+        <ul id="shares-list" class="shares-list"></ul>
+      </section>
+    </div>
+
+    <footer class="app-footer">расчёт в целых копейках · без округлительных сюрпризов</footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
